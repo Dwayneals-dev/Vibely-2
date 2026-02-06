@@ -15,11 +15,14 @@ export interface ComparisonRow {
 }
 
 export interface FormData {
+  businessName: string;
+  contactName: string;
   industry: string;
+  otherIndustry: string;
   city: string;
   phone: string;
   email: string;
-  hasWebsite: string | null; // 'yes' | 'no'
+  hasWebsite: string | null; // 'yes-update' | 'yes-expensive' | 'no'
 }
 
 export enum FormStep {

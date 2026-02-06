@@ -3,22 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/favicon.ico" />
     <title>Vibely | Custom Websites for Local Businesses</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              sans: ['Work Sans', 'sans-serif'],
+              heading: ['Outfit', 'sans-serif'],
             },
             colors: {
-              brand: {
-                start: '#F472B6', // pink-400
-                end: '#FB923C',   // orange-400
-                dark: '#BE185D',  // pink-700
+              dark: {
+                950: '#06060A',
+                900: '#09090F',
+                800: '#111118',
+                700: '#1A1A24',
+                600: '#242430',
+              },
+              accent: {
+                pink: '#E855A0',
+                orange: '#FB923C',
+                violet: '#8B5CF6',
               }
+            },
+            animation: {
+              'glow-pulse': 'glow-pulse 4s ease-in-out infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'shimmer': 'shimmer 2s linear infinite',
+            },
+            keyframes: {
+              'glow-pulse': {
+                '0%, 100%': { opacity: '0.4' },
+                '50%': { opacity: '0.8' },
+              },
+              'float': {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              'shimmer': {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(100%)' },
+              },
             }
           }
         }
@@ -27,20 +55,71 @@
     <style>
       html { scroll-behavior: smooth; }
       body { -webkit-font-smoothing: antialiased; }
+
+      /* Grain texture overlay */
+      .grain::before {
+        content: '';
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      }
+
+      /* Glass card utility */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(12px);
+      }
+
+      /* Glow effects */
+      .glow-pink { box-shadow: 0 0 40px rgba(232, 85, 160, 0.15); }
+      .glow-orange { box-shadow: 0 0 40px rgba(251, 146, 60, 0.15); }
+      .glow-violet { box-shadow: 0 0 40px rgba(139, 92, 246, 0.15); }
+
+      /* Gradient text */
+      .text-gradient {
+        background: linear-gradient(135deg, #E855A0 0%, #FB923C 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Aurora background */
+      .aurora-bg {
+        background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(232, 85, 160, 0.15), transparent),
+                    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(251, 146, 60, 0.08), transparent),
+                    radial-gradient(ellipse 50% 30% at 20% 80%, rgba(139, 92, 246, 0.08), transparent);
+      }
+
+      /* Animated gradient border */
+      .border-gradient {
+        position: relative;
+      }
+      .border-gradient::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(232, 85, 160, 0.3), rgba(251, 146, 60, 0.3), rgba(139, 92, 246, 0.3));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #09090F; }
+      ::-webkit-scrollbar-thumb { background: #242430; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: #3f3f50; }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "framer-motion": "https://esm.sh/framer-motion@^12.31.0"
-  }
-}
-</script>
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

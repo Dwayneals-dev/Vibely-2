@@ -1,20 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { HeroSection } from './components/HeroSection';
 import { LogoTicker } from './components/LogoTicker';
 import { ProcessSteps } from './components/ProcessSteps';
 import { ComparisonTable } from './components/ComparisonTable';
+import { Testimonials } from './components/Testimonials';
 import { PricingGrid } from './components/PricingGrid';
 import { PreviewFormWizard } from './components/PreviewFormWizard';
+import { LegalModal } from './components/LegalModal';
 import { Button } from './components/ui/Button';
+import { Mail } from 'lucide-react';
 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [selectedIndustry, setSelectedIndustry] = useState<string | undefined>();
+  const [legalModal, setLegalModal] = useState<'terms' | 'privacy' | null>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+
+      // Show header when scrolling up or at top, hide when scrolling down
+      if (currentScrollY < 100) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY < lastScrollY.current) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY.current + 10) {
+        setIsHeaderVisible(false);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -22,24 +41,30 @@ export default function App() {
     document.getElementById('instant-preview')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleServiceClick = (service: string) => {
+    setSelectedIndustry(service);
+    scrollToForm();
+  };
+
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-pink-100 selection:text-pink-900">
-      
+    <div className="min-h-screen bg-dark-950 font-sans text-zinc-100 selection:bg-accent-pink/20 selection:text-white grain">
+
       {/* Navbar */}
-      <header 
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}
+      <header
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-dark-950/80 backdrop-blur-xl py-3' : 'bg-transparent py-5'} ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {/* Logo */}
-            <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-orange-400 rounded-lg transform rotate-3 flex items-center justify-center text-white font-bold text-xl">
-                V
-            </div>
-            <span className="text-xl font-bold tracking-tight text-gray-900">Vibely</span>
+          <div className="flex items-center gap-2.5">
+            <img
+              src="/images/vibelyheader.png"
+              alt="Vibely"
+              className="h-9 object-contain rounded-lg"
+            />
+            <span className="text-xl font-bold font-heading tracking-tight text-white">Vibely</span>
           </div>
-          
-          <div className="flex items-center gap-4">
-             <a href="#pricing" className="hidden md:block text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
+
+          <div className="flex items-center gap-5">
+             <a href="#pricing" className="hidden md:block text-sm font-medium text-zinc-400 hover:text-white transition-colors cursor-pointer">Pricing</a>
              <Button size="sm" onClick={scrollToForm}>
                 Get My Preview
              </Button>
@@ -49,35 +74,51 @@ export default function App() {
 
       <main>
         <HeroSection />
-        <LogoTicker />
+        <LogoTicker onServiceClick={handleServiceClick} />
         <ProcessSteps />
         <ComparisonTable />
+        <Testimonials />
         <PricingGrid />
-        <PreviewFormWizard />
+        <PreviewFormWizard prefilledIndustry={selectedIndustry} />
       </main>
 
-      <footer className="bg-gray-900 text-gray-400 py-12">
+      <footer className="bg-dark-950 border-t border-white/[0.06] text-zinc-400 py-12">
         <div className="container mx-auto px-4 text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-                <div className="w-6 h-6 bg-gradient-to-br from-pink-500 to-orange-400 rounded-md flex items-center justify-center text-white font-bold text-sm">
-                    V
-                </div>
-                <span className="text-lg font-bold text-white">Vibely</span>
+            <div className="flex items-center justify-center gap-2.5 mb-4">
+                <img
+                  src="/images/vibelyheader.png"
+                  alt="Vibely"
+                  className="h-7 object-contain rounded-md"
+                />
+                <span className="text-lg font-bold font-heading text-white">Vibely</span>
             </div>
-          <p className="text-sm">© {new Date().getFullYear()} Vibely. All rights reserved.</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4 text-sm">
+              <a href="mailto:hello@vibely.co.nz" className="flex items-center gap-2 hover:text-white transition-colors cursor-pointer">
+                <Mail className="w-4 h-4" />
+                hello@vibely.co.nz
+              </a>
+            </div>
+          <p className="text-sm text-zinc-600">&copy; {new Date().getFullYear()} Vibely. All rights reserved.</p>
           <div className="mt-4 flex justify-center gap-6 text-sm">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <button onClick={() => setLegalModal('privacy')} className="text-zinc-500 hover:text-white transition-colors cursor-pointer">Privacy Policy</button>
+            <button onClick={() => setLegalModal('terms')} className="text-zinc-500 hover:text-white transition-colors cursor-pointer">Terms of Service</button>
           </div>
         </div>
       </footer>
 
       {/* Sticky Mobile CTA (Bottom) */}
-      <div className={`fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 shadow-lg md:hidden transition-transform duration-300 z-40 ${isScrolled ? 'translate-y-0' : 'translate-y-full'}`}>
-          <Button fullWidth onClick={scrollToForm} className="shadow-orange-500/20">
+      <div className={`fixed bottom-0 left-0 right-0 p-4 bg-dark-950/90 backdrop-blur-xl border-t border-white/[0.06] md:hidden transition-transform duration-300 z-40 ${isScrolled ? 'translate-y-0' : 'translate-y-full'}`}>
+          <Button fullWidth onClick={scrollToForm}>
               Get My Instant Preview
           </Button>
       </div>
+
+      {/* Legal Modals */}
+      <LegalModal
+        isOpen={legalModal !== null}
+        onClose={() => setLegalModal(null)}
+        type={legalModal || 'terms'}
+      />
 
     </div>
   );
