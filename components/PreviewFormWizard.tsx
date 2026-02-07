@@ -114,10 +114,35 @@ export const PreviewFormWizard: React.FC<PreviewFormWizardProps> = ({ prefilledI
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'preview-request',
+          businessName: formData.businessName,
+          contactName: formData.contactName,
+          industry: formData.industry,
+          otherIndustry: formData.otherIndustry,
+          city: formData.city,
+          email: formData.email,
+          phone: formData.phone,
+          hasWebsite: formData.hasWebsite || '',
+        }).toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
+
       setIsSubmitting(false);
       setStep(FormStep.SUCCESS);
-    }, 1500);
+    } catch (err) {
+      setIsSubmitting(false);
+      setError('Something went wrong. Please try again.');
+    }
   };
 
   const inputStyles = "w-full px-4 py-3 rounded-xl bg-dark-700 border border-white/[0.08] text-white placeholder-zinc-500 focus:ring-2 focus:ring-accent-pink/50 focus:border-transparent transition-all";

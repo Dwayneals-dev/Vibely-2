@@ -64,8 +64,8 @@
         top: 0; left: 0; right: 0; bottom: 0;
         pointer-events: none;
         z-index: 9999;
-        opacity: 0.03;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        opacity: 0.012;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
       }
 
       /* Glass card utility */
@@ -120,6 +120,19 @@
     </style>
 </head>
   <body>
+    <!-- Hidden Netlify form for build-time detection -->
+    <form name="preview-request" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="businessName" />
+      <input type="text" name="contactName" />
+      <input type="text" name="industry" />
+      <input type="text" name="otherIndustry" />
+      <input type="text" name="city" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="hasWebsite" />
+      <input type="text" name="bot-field" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
