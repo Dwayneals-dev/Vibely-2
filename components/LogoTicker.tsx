@@ -49,7 +49,7 @@ export const LogoTicker: React.FC<LogoTickerProps> = ({ onServiceClick }) => {
             <button
               key={index}
               onClick={() => onServiceClick?.(service)}
-              className="marquee-item text-base sm:text-lg font-extrabold uppercase text-white tracking-wide mx-4 sm:mx-6 cursor-pointer transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-accent-pink hover:to-accent-orange inline-block py-2 bg-transparent border-none"
+              className="marquee-item text-2xl sm:text-4xl font-extrabold uppercase text-white tracking-wider mx-6 sm:mx-8 cursor-pointer transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-accent-pink hover:to-accent-orange inline-block py-2 bg-transparent border-none"
             >
               {service}
             </button>
@@ -58,7 +58,7 @@ export const LogoTicker: React.FC<LogoTickerProps> = ({ onServiceClick }) => {
             <button
               key={`dup-${index}`}
               onClick={() => onServiceClick?.(service)}
-              className="marquee-item text-base sm:text-lg font-extrabold uppercase text-white tracking-wide mx-4 sm:mx-6 cursor-pointer transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-accent-pink hover:to-accent-orange inline-block py-2 bg-transparent border-none"
+              className="marquee-item text-2xl sm:text-4xl font-extrabold uppercase text-white tracking-wider mx-6 sm:mx-8 cursor-pointer transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-accent-pink hover:to-accent-orange inline-block py-2 bg-transparent border-none"
               aria-hidden="true"
             >
               {service}
@@ -69,7 +69,7 @@ export const LogoTicker: React.FC<LogoTickerProps> = ({ onServiceClick }) => {
 
       <style>{`
         .marquee-track {
-          animation: marquee 50s linear infinite;
+          animation: marquee 100s linear infinite;
         }
         .marquee-wrapper:hover .marquee-track {
           animation-play-state: paused;
