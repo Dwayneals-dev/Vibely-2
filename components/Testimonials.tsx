@@ -13,24 +13,17 @@ interface Testimonial {
 export const Testimonials: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
-      name: "Marcus T.",
-      business: "Apex Roofing Co.",
-      city: "Dallas, TX",
-      quote: "We went from zero online presence to getting 15 leads a week. Vibely paid for itself in the first month.",
+      name: "Simon",
+      business: "Mowing West",
+      city: "Auckland",
+      quote: "We used to get about 10 leads per month. We're up to an average of 45 now. The lead form the guys made for us is super helpful on a data level too. Plus the website sets us apart from other contractors around us. Thanks for looking after us!",
       rating: 5
     },
     {
-      name: "Sarah L.",
-      business: "Pure Glow Salon",
-      city: "Austin, TX",
-      quote: "I tried Wix for 6 months and hated every minute. Vibely built something better in 2 days. My clients love it.",
-      rating: 5
-    },
-    {
-      name: "James R.",
-      business: "Metro HVAC Solutions",
-      city: "Phoenix, AZ",
-      quote: "The booking system alone saves me 3 hours a day. No more phone tag with customers. Worth every penny.",
+      name: "Mathew",
+      business: "Ground Pro Ltd",
+      city: "Auckland",
+      quote: "They're quick! Thanks for the tidy website, team. Ticks all the boxes and such an easy business to work with.",
       rating: 5
     }
   ];
@@ -55,7 +48,7 @@ export const Testimonials: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}

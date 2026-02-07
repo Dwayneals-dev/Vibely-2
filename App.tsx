@@ -11,7 +11,7 @@ import { LegalModal } from './components/LegalModal';
 import { PricingPage } from './pages/PricingPage';
 import { FAQPage } from './pages/FAQPage';
 import { Button } from './components/ui/Button';
-import { Mail } from 'lucide-react';
+import { Mail, Menu, X } from 'lucide-react';
 
 // Home page content component
 function HomePage({ selectedIndustry, onServiceClick }: { selectedIndustry?: string; onServiceClick: (service: string) => void }) {
@@ -31,14 +31,16 @@ function HomePage({ selectedIndustry, onServiceClick }: { selectedIndustry?: str
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedIndustry, setSelectedIndustry] = useState<string | undefined>();
   const [legalModal, setLegalModal] = useState<'terms' | 'privacy' | null>(null);
   const lastScrollY = useRef(0);
   const location = useLocation();
 
-  // Scroll to top on route change
+  // Scroll to top and close mobile menu on route change
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -96,11 +98,43 @@ export default function App() {
           <div className="flex items-center gap-5">
              <Link to="/pricing" className="hidden md:block text-sm font-medium text-zinc-400 hover:text-white transition-colors">Pricing</Link>
              <Link to="/faq" className="hidden md:block text-sm font-medium text-zinc-400 hover:text-white transition-colors">FAQ</Link>
-             <Button size="sm" onClick={scrollToForm}>
+             <Button size="sm" onClick={scrollToForm} className="hidden sm:flex">
                 Get My Preview
              </Button>
+             <button
+               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+               className="md:hidden p-2 text-zinc-400 hover:text-white transition-colors"
+               aria-label="Toggle menu"
+             >
+               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-dark-900/95 backdrop-blur-xl border-t border-white/[0.06]">
+            <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
+              <Link
+                to="/pricing"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-sm font-medium text-zinc-400 hover:text-white transition-colors py-2"
+              >
+                Pricing
+              </Link>
+              <Link
+                to="/faq"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-sm font-medium text-zinc-400 hover:text-white transition-colors py-2"
+              >
+                FAQ
+              </Link>
+              <Button size="sm" onClick={() => { scrollToForm(); setIsMobileMenuOpen(false); }} className="w-full mt-2">
+                Get My Preview
+              </Button>
+            </div>
+          </div>
+        )}
       </header>
 
       <main>
@@ -136,15 +170,6 @@ export default function App() {
             </div>
           </div>
         </footer>
-      )}
-
-      {/* Sticky Mobile CTA (Bottom) - only on home page */}
-      {isHomePage && (
-        <div className={`fixed bottom-0 left-0 right-0 p-4 bg-dark-950/90 backdrop-blur-xl border-t border-white/[0.06] md:hidden transition-transform duration-300 z-40 ${isScrolled ? 'translate-y-0' : 'translate-y-full'}`}>
-            <Button fullWidth onClick={scrollToForm}>
-                Get My Instant Preview
-            </Button>
-        </div>
       )}
 
       {/* Legal Modals */}
