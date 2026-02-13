@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# SPA fallback — Netlify serves prerendered files first (they exist as real files),
+# then falls back to index.html for any other client-side routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
