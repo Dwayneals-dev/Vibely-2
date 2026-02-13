@@ -61,43 +61,45 @@ export const Testimonials: React.FC = () => {
               transition={{ delay: index * 0.1 }}
               className="relative group"
             >
-              {/* Website screenshot — separate card behind, extends outward on desktop */}
-              <div className={`relative rounded-xl overflow-hidden border border-white/[0.06] shadow-2xl md:w-[120%] ${index === 0 ? 'md:ml-auto md:mr-0' : 'md:mr-auto md:ml-0'}`}>
-                <img
-                  src={testimonial.image}
-                  alt={`${testimonial.business} website`}
-                  className="w-full h-auto block opacity-40"
-                />
-                {/* Fade overlay to blend into dark bg */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/40 to-transparent" />
-              </div>
+              {/* Container that holds both layers */}
+              <div className="relative">
+                {/* Website screenshot — absolutely positioned behind, extends outward */}
+                <div className={`hidden md:block absolute top-0 bottom-8 rounded-xl overflow-hidden border border-white/[0.06] shadow-2xl w-[75%] ${index === 0 ? 'left-0 -translate-x-[15%]' : 'right-0 translate-x-[15%]'}`}>
+                  <img
+                    src={testimonial.image}
+                    alt={`${testimonial.business} website`}
+                    className="w-full h-full object-cover object-top opacity-30"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/30 to-dark-950/10" />
+                </div>
 
-              {/* Review card — overlapping on top */}
-              <div className="relative -mt-32 mx-4 sm:mx-6 z-10">
-                {/* Glow on hover */}
-                <div className="absolute -inset-1 bg-gradient-to-b from-accent-pink/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+                {/* Review card — main layer on top */}
+                <div className={`relative z-10 ${index === 0 ? 'md:ml-auto md:mr-0' : 'md:mr-auto md:ml-0'} md:w-[75%] md:pt-24`}>
+                  {/* Glow on hover */}
+                  <div className="absolute -inset-1 bg-gradient-to-b from-accent-pink/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
 
-                <div className="relative glass-card rounded-2xl p-7 hover:border-white/10 transition-all duration-300 flex flex-col md:min-h-[320px]">
-                  {/* Quote icon */}
-                  <Quote className="w-8 h-8 text-accent-pink/20 mb-4" />
+                  <div className="relative glass-card rounded-2xl p-7 hover:border-white/10 transition-all duration-300 flex flex-col md:min-h-[320px]">
+                    {/* Quote icon */}
+                    <Quote className="w-8 h-8 text-accent-pink/20 mb-4" />
 
-                  <div className="flex gap-0.5 mb-4">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-accent-orange text-accent-orange" />
-                    ))}
-                  </div>
-
-                  <blockquote className="text-zinc-300 leading-relaxed mb-6 flex-1 text-sm">
-                    "{testimonial.quote}"
-                  </blockquote>
-
-                  <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-pink to-accent-orange flex items-center justify-center text-white font-bold font-heading text-sm flex-shrink-0">
-                      {testimonial.name.charAt(0)}
+                    <div className="flex gap-0.5 mb-4">
+                      {Array.from({ length: testimonial.rating }).map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-accent-orange text-accent-orange" />
+                      ))}
                     </div>
-                    <div>
-                      <p className="font-semibold text-white text-sm">{testimonial.name}</p>
-                      <p className="text-zinc-500 text-xs">{testimonial.business} &middot; {testimonial.city}</p>
+
+                    <blockquote className="text-zinc-300 leading-relaxed mb-6 flex-1 text-sm">
+                      "{testimonial.quote}"
+                    </blockquote>
+
+                    <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-pink to-accent-orange flex items-center justify-center text-white font-bold font-heading text-sm flex-shrink-0">
+                        {testimonial.name.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-white text-sm">{testimonial.name}</p>
+                        <p className="text-zinc-500 text-xs">{testimonial.business} &middot; {testimonial.city}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
