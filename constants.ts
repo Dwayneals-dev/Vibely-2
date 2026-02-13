@@ -5,7 +5,7 @@ export const SUPPORT_EMAIL = "hello@vibely.co.nz";
 
 export const PRICING_TIERS: PricingTier[] = [
   {
-    name: 'LANDING',
+    name: 'Land',
     description: '1-page lead gen landing page',
     month1: 200,
     monthlyOngoing: 40,
@@ -21,15 +21,15 @@ export const PRICING_TIERS: PricingTier[] = [
     highlight: false,
   },
   {
-    name: 'LAUNCHING',
-    description: '2\u20137 page website',
+    name: 'Launch',
+    description: '2\u20138 page website',
     month1: 600,
     monthlyOngoing: 60,
     annual: 1260,
     prepaid: 945,
     isPlus: false,
     features: [
-      'Multi-Page Site (Up to 7)',
+      'Multi-Page Site (Up to 8)',
       'Online Booking System',
       'Google Business Profile Setup',
       'Basic SEO Optimisation',
@@ -38,7 +38,7 @@ export const PRICING_TIERS: PricingTier[] = [
     highlight: true,
   },
   {
-    name: 'ORBIT',
+    name: 'Orbit',
     description: 'Custom build + automations + AI',
     month1: 3000,
     monthlyOngoing: 150,
