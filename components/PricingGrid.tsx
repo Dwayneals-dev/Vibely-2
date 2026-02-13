@@ -92,7 +92,7 @@ export const PricingGrid: React.FC = () => {
                   </div>
                 )}
 
-                <h3 className="text-lg font-semibold font-heading leading-5 text-white">{tier.name}</h3>
+                <h3 className="text-lg font-semibold font-heading leading-5 text-white uppercase tracking-wide">{tier.name}</h3>
                 <p className="mt-2 text-sm text-zinc-500">{tier.description}</p>
 
                 <AnimatePresence mode="wait">
