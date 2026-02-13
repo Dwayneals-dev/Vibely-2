@@ -26,7 +26,7 @@ export const LogoTicker: React.FC<LogoTickerProps> = ({ onServiceClick }) => {
     <section className="bg-dark-900 border-y border-white/[0.04] py-10 overflow-hidden">
       <div className="container mx-auto px-4 text-center mb-6">
         <p className="text-sm font-medium text-zinc-600 uppercase tracking-widest mb-5">
-          Websites built for every local trade & service
+          30+ industries. One system. 48 hours.
         </p>
         <div className="flex justify-center gap-8 sm:gap-12">
           {stats.map((stat, i) => (

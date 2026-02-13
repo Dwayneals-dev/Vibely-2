@@ -8,7 +8,7 @@ export const ProcessSteps: React.FC = () => {
       icon: <Zap className="h-7 w-7 text-accent-pink" />,
       number: "01",
       title: "The Spark",
-      description: "Tell us your industry and city. We use our data to identify what works best in your market.",
+      description: "Tell us your trade and town. Our system already knows what works in your market.",
       glow: "from-accent-pink/10",
       glowColor: "rgba(232, 85, 160, 0.25)",
       borderColor: "rgba(232, 85, 160, 0.3)",
@@ -17,7 +17,7 @@ export const ProcessSteps: React.FC = () => {
       icon: <Smartphone className="h-7 w-7 text-accent-orange" />,
       number: "02",
       title: "The Preview",
-      description: "We text you a private, live link to your custom site design in minutes. No imagining required.",
+      description: "We send you a live preview link. Not a mockup \u2014 a real working site. If you don't love it, you pay nothing.",
       glow: "from-accent-orange/10",
       glowColor: "rgba(251, 146, 60, 0.25)",
       borderColor: "rgba(251, 146, 60, 0.3)",
@@ -26,7 +26,7 @@ export const ProcessSteps: React.FC = () => {
       icon: <Rocket className="h-7 w-7 text-accent-violet" />,
       number: "03",
       title: "The Launch",
-      description: "Love it? We connect your domain and you go live. Hate it? You pay $0. Zero risk.",
+      description: "Say the word and you're live. Domain connected, leads coming in, done.",
       glow: "from-accent-violet/10",
       glowColor: "rgba(139, 92, 246, 0.25)",
       borderColor: "rgba(139, 92, 246, 0.3)",
@@ -45,7 +45,7 @@ export const ProcessSteps: React.FC = () => {
             <span className="text-gradient">system.</span>
           </h2>
           <p className="mt-4 text-lg text-zinc-400">
-            We've turned website building into a factory line. You get the quality of a boutique agency with the speed of software.
+            Boutique quality. Factory speed. You get both.
           </p>
         </div>
 

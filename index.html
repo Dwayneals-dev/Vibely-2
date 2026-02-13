@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png" />
     <link rel="shortcut icon" href="/images/favicon.png" />
     <title>Vibely | Custom Websites for Local Businesses in NZ</title>
-    <meta name="description" content="Get a stunning custom website for your local business. Professional web design with AI-powered content, free domain setup, and ongoing support. Serving New Zealand businesses." />
+    <meta name="description" content="Custom websites for NZ local businesses — live in 48 hours, from $200 to start. Professional web design with lead capture, hosting, and ongoing support." />
     <meta name="keywords" content="web design NZ, custom websites, local business websites, New Zealand web development" />
     <link rel="canonical" href="https://vibely.co.nz/" />
 
@@ -16,137 +17,159 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vibely.co.nz/" />
     <meta property="og:title" content="Vibely | Custom Websites for Local Businesses in NZ" />
-    <meta property="og:description" content="Get a stunning custom website for your local business. Professional web design with AI-powered content, free domain setup, and ongoing support." />
+    <meta property="og:description" content="Custom websites for NZ local businesses — live in 48 hours, from $200 to start. Professional web design with lead capture, hosting, and ongoing support." />
     <meta property="og:image" content="https://vibely.co.nz/images/og-image.png" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Vibely | Custom Websites for Local Businesses in NZ" />
-    <meta name="twitter:description" content="Get a stunning custom website for your local business. Professional web design with AI-powered content, free domain setup, and ongoing support." />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Work Sans', 'sans-serif'],
-              heading: ['Outfit', 'sans-serif'],
-            },
-            colors: {
-              dark: {
-                950: '#06060A',
-                900: '#09090F',
-                800: '#111118',
-                700: '#1A1A24',
-                600: '#242430',
-              },
-              accent: {
-                pink: '#E855A0',
-                orange: '#FB923C',
-                violet: '#8B5CF6',
-              }
-            },
-            animation: {
-              'glow-pulse': 'glow-pulse 4s ease-in-out infinite',
-              'float': 'float 6s ease-in-out infinite',
-              'shimmer': 'shimmer 2s linear infinite',
-            },
-            keyframes: {
-              'glow-pulse': {
-                '0%, 100%': { opacity: '0.4' },
-                '50%': { opacity: '0.8' },
-              },
-              'float': {
-                '0%, 100%': { transform: 'translateY(0px)' },
-                '50%': { transform: 'translateY(-20px)' },
-              },
-              'shimmer': {
-                '0%': { transform: 'translateX(-100%)' },
-                '100%': { transform: 'translateX(100%)' },
-              },
-            }
+    <meta name="twitter:description" content="Custom websites for NZ local businesses — live in 48 hours, from $200 to start. Professional web design with lead capture, hosting, and ongoing support." />
+
+    <!-- Font preloads -->
+    <link rel="preload" href="/fonts/Outfit-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/WorkSans-Variable.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- JSON-LD: ProfessionalService -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Vibely",
+      "url": "https://vibely.co.nz",
+      "email": "hello@vibely.co.nz",
+      "description": "Custom websites for local businesses in New Zealand. Professional web design live in 48 hours.",
+      "areaServed": {
+        "@type": "Country",
+        "name": "New Zealand"
+      },
+      "serviceType": "Web Design",
+      "priceRange": "$200 - $3,000+"
+    }
+    </script>
+
+    <!-- JSON-LD: Product — Landing -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Vibely Landing",
+      "description": "A sharp, professional single-page site that gets you found and captures leads — live in 48 hours.",
+      "offers": {
+        "@type": "Offer",
+        "price": "200.00",
+        "priceCurrency": "NZD",
+        "priceValidUntil": "2026-12-31",
+        "availability": "https://schema.org/InStock",
+        "url": "https://vibely.co.nz/pricing"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: Product — Launching -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Vibely Launching",
+      "description": "Everything in Landing, plus multi-page design, bookings, automations, and the tools to turn traffic into revenue.",
+      "offers": {
+        "@type": "Offer",
+        "price": "600.00",
+        "priceCurrency": "NZD",
+        "priceValidUntil": "2026-12-31",
+        "availability": "https://schema.org/InStock",
+        "url": "https://vibely.co.nz/pricing"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: Product — Orbit -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Vibely Orbit",
+      "description": "Fully custom build with e-commerce, automations, AI, advanced SEO, and priority support.",
+      "offers": {
+        "@type": "Offer",
+        "price": "3000.00",
+        "priceCurrency": "NZD",
+        "priceValidUntil": "2026-12-31",
+        "availability": "https://schema.org/InStock",
+        "url": "https://vibely.co.nz/pricing"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How fast can you launch my website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most sites go live in around 48 hours once we've got everything we need from you."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do I get with a Vibely site?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A clean, mobile-optimised site built to help customers find you and get in touch. Plans start from $200 to build, then $40/mo for hosting, support, and updates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you need from me to start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your contact details, services, service area, and any logo/photos/copy you've got."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I own my content and domain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You keep ownership of your content and domain. Once everything's paid, you have full practical use of your site."
           }
         }
-      }
+      ]
+    }
     </script>
-    <style>
-      html { scroll-behavior: smooth; }
-      body { -webkit-font-smoothing: antialiased; }
-
-      /* Grain texture overlay */
-      .grain::before {
-        content: '';
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        pointer-events: none;
-        z-index: 9999;
-        opacity: 0.012;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      }
-
-      /* Glass card utility */
-      .glass-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        backdrop-filter: blur(12px);
-      }
-
-      /* Glow effects */
-      .glow-pink { box-shadow: 0 0 40px rgba(232, 85, 160, 0.15); }
-      .glow-orange { box-shadow: 0 0 40px rgba(251, 146, 60, 0.15); }
-      .glow-violet { box-shadow: 0 0 40px rgba(139, 92, 246, 0.15); }
-
-      /* Gradient text */
-      .text-gradient {
-        background: linear-gradient(135deg, #E855A0 0%, #FB923C 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      /* Aurora background */
-      .aurora-bg {
-        background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(232, 85, 160, 0.15), transparent),
-                    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(251, 146, 60, 0.08), transparent),
-                    radial-gradient(ellipse 50% 30% at 20% 80%, rgba(139, 92, 246, 0.08), transparent);
-      }
-
-      /* Animated gradient border */
-      .border-gradient {
-        position: relative;
-      }
-      .border-gradient::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        padding: 1px;
-        background: linear-gradient(135deg, rgba(232, 85, 160, 0.3), rgba(251, 146, 60, 0.3), rgba(139, 92, 246, 0.3));
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-      }
-
-      /* Scrollbar styling */
-      ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: #09090F; }
-      ::-webkit-scrollbar-thumb { background: #242430; border-radius: 3px; }
-      ::-webkit-scrollbar-thumb:hover { background: #3f3f50; }
-    </style>
 </head>
   <body>
     <!-- Hidden Netlify form for build-time detection -->
-    <form name="preview-request" netlify netlify-honeypot="bot-field" hidden>
+    <form name="preview-request" netlify netlify-honeypot="bot-field" enctype="multipart/form-data" hidden>
+      <!-- Step 1: Identity -->
       <input type="text" name="businessName" />
       <input type="text" name="contactName" />
       <input type="text" name="industry" />
       <input type="text" name="otherIndustry" />
       <input type="text" name="city" />
+      <!-- Step 2: Contact -->
       <input type="email" name="email" />
       <input type="tel" name="phone" />
-      <input type="text" name="hasWebsite" />
+      <!-- Step 3: Business Details -->
+      <textarea name="services"></textarea>
+      <input type="text" name="websiteStatus" />
+      <input type="url" name="existingUrl" />
+      <textarea name="differentiators"></textarea>
+      <input type="text" name="websiteGoals" />
+      <!-- Step 4: Uploads + Final -->
+      <input type="file" name="logo" />
+      <input type="file" name="brandGuide" />
+      <input type="file" name="galleryPhotos" multiple />
+      <input type="file" name="teamPhotos" multiple />
+      <input type="file" name="documents" multiple />
+      <textarea name="additionalNotes"></textarea>
+      <input type="text" name="hearAboutUs" />
+      <!-- Honeypot -->
       <input type="text" name="bot-field" />
     </form>
 

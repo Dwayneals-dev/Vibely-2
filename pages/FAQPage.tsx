@@ -19,7 +19,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "What do I get with a Vibely site?",
-    answer: "A clean, mobile-optimised site built to help customers find you and get in touch."
+    answer: "A clean, mobile-optimised site built to help customers find you and get in touch. Plans start from $200 to build, then $40/mo for hosting, support, and updates."
   },
   {
     question: "What do you need from me to start?",

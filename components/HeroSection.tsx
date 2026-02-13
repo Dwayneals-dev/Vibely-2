@@ -180,49 +180,73 @@ export const HeroSection: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-pink opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-pink"></span>
               </span>
-              NZ-owned &middot; Built for local businesses
+              NZ-owned &middot; 48-hour delivery &middot; Cancel anytime
             </div>
           </motion.div>
 
           <div className="grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-center">
             {/* Left: Content */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center lg:text-left"
-            >
+            <div className="text-center lg:text-left">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-heading tracking-tight leading-[1.05] text-white">
-                Your Next Customer
+                {['They', 'Googled', 'You.'].map((word, i) => (
+                  <motion.span
+                    key={word}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
+                    className="inline-block mr-[0.25em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
                 <br />
-                Is Searching{' '}
-                <span className="text-gradient">Right Now.</span>
+                {['You', "Weren't", 'There.'].map((word, i) => (
+                  <motion.span
+                    key={word}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.4 + i * 0.06 }}
+                    className="inline-block mr-[0.25em] text-gradient"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
               </h1>
 
-              <p className="mt-6 text-lg sm:text-xl text-zinc-400 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                We build high-converting websites for tradies, salons, and local service businesses
-                — <span className="text-white font-medium">live in 48 hours</span>, from just $45/mo.
-              </p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="mt-6 text-lg sm:text-xl text-zinc-400 leading-relaxed max-w-xl mx-auto lg:mx-0"
+              >
+                We build websites that get local businesses found
+                — <span className="text-white font-medium">live in 48 hours</span>, from $200 to start.
+              </motion.p>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.85 }}
+                className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center"
+              >
                 <Button size="lg" onClick={scrollToForm}>
-                  Get My Free Preview
+                  See Your Site Free
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <button
                   onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
                   className="text-zinc-400 hover:text-white text-sm font-medium transition-colors flex items-center gap-2 cursor-pointer group"
                 >
-                  See pricing
+                  View plans
                   <span className="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
                 </button>
-              </div>
+              </motion.div>
 
               {/* Social proof pills */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
+                transition={{ delay: 1.0, duration: 0.5 }}
                 className="mt-10 flex flex-wrap gap-3 justify-center lg:justify-start"
               >
                 {proofItems.map((item, i) => (
@@ -235,7 +259,7 @@ export const HeroSection: React.FC = () => {
                   </div>
                 ))}
               </motion.div>
-            </motion.div>
+            </div>
 
             {/* Right: Visual element — floating dashboard mockup */}
             <motion.div

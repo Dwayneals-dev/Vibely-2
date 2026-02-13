@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { HeroSection } from './components/HeroSection';
 import { LogoTicker } from './components/LogoTicker';
 import { ProcessSteps } from './components/ProcessSteps';
@@ -10,6 +11,7 @@ import { PreviewFormWizard } from './components/PreviewFormWizard';
 import { LegalModal } from './components/LegalModal';
 import { PricingPage } from './pages/PricingPage';
 import { FAQPage } from './pages/FAQPage';
+import { DealsPage } from './pages/DealsPage';
 import { Button } from './components/ui/Button';
 import { Mail, Menu, X } from 'lucide-react';
 
@@ -76,8 +78,6 @@ export default function App() {
     document.getElementById('instant-preview')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const isHomePage = location.pathname === '/';
-
   return (
     <div className="min-h-screen bg-dark-950 font-sans text-zinc-100 selection:bg-accent-pink/20 selection:text-white grain">
 
@@ -96,10 +96,17 @@ export default function App() {
           </Link>
 
           <div className="flex items-center gap-5">
+             <Link to="/deals" className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+               Feb Deals
+               <span className="relative flex h-2 w-2">
+                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-orange opacity-75"></span>
+                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-orange"></span>
+               </span>
+             </Link>
              <Link to="/pricing" className="hidden md:block text-sm font-medium text-zinc-400 hover:text-white transition-colors">Pricing</Link>
              <Link to="/faq" className="hidden md:block text-sm font-medium text-zinc-400 hover:text-white transition-colors">FAQ</Link>
              <Button size="sm" onClick={scrollToForm} className="hidden sm:flex">
-                Get My Preview
+                See Your Site Free
              </Button>
              <button
                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -116,6 +123,17 @@ export default function App() {
           <div className="md:hidden bg-dark-900/95 backdrop-blur-xl border-t border-white/[0.06]">
             <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
               <Link
+                to="/deals"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-sm font-medium text-zinc-400 hover:text-white transition-colors py-2 flex items-center gap-2"
+              >
+                Feb Deals
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-orange opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-orange"></span>
+                </span>
+              </Link>
+              <Link
                 to="/pricing"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-sm font-medium text-zinc-400 hover:text-white transition-colors py-2"
@@ -130,7 +148,7 @@ export default function App() {
                 FAQ
               </Link>
               <Button size="sm" onClick={() => { scrollToForm(); setIsMobileMenuOpen(false); }} className="w-full mt-2">
-                Get My Preview
+                See Your Site Free
               </Button>
             </div>
           </div>
@@ -138,16 +156,26 @@ export default function App() {
       </header>
 
       <main>
-        <Routes>
-          <Route path="/" element={<HomePage selectedIndustry={selectedIndustry} onServiceClick={handleServiceClick} />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/faq" element={<FAQPage />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
+          >
+            <Routes location={location}>
+              <Route path="/" element={<HomePage selectedIndustry={selectedIndustry} onServiceClick={handleServiceClick} />} />
+              <Route path="/pricing" element={<PricingPage />} />
+              <Route path="/deals" element={<DealsPage />} />
+              <Route path="/faq" element={<FAQPage />} />
+            </Routes>
+          </motion.div>
+        </AnimatePresence>
       </main>
 
-      {/* Footer - only show on home page */}
-      {isHomePage && (
-        <footer className="bg-dark-950 border-t border-white/[0.06] text-zinc-400 py-12">
+      {/* Footer */}
+      <footer className="bg-dark-950 border-t border-white/[0.06] text-zinc-400 py-12">
           <div className="container mx-auto px-4 text-center">
               <div className="flex items-center justify-center gap-2.5 mb-4">
                   <img
@@ -170,7 +198,6 @@ export default function App() {
             </div>
           </div>
         </footer>
-      )}
 
       {/* Legal Modals */}
       <LegalModal
