@@ -51,7 +51,7 @@ export const Testimonials: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+        <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -61,21 +61,23 @@ export const Testimonials: React.FC = () => {
               transition={{ delay: index * 0.1 }}
               className="relative group"
             >
-              {/* Glow on hover */}
-              <div className="absolute -inset-1 bg-gradient-to-b from-accent-pink/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+              {/* Website screenshot — separate card behind */}
+              <div className="relative rounded-xl overflow-hidden border border-white/[0.06] shadow-2xl">
+                <img
+                  src={testimonial.image}
+                  alt={`${testimonial.business} website`}
+                  className="w-full h-auto block opacity-40"
+                />
+                {/* Fade overlay to blend into dark bg */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/40 to-transparent" />
+              </div>
 
-              <div className="relative rounded-2xl overflow-hidden h-full">
-                {/* Website screenshot background */}
-                <div className="absolute inset-0">
-                  <img
-                    src={testimonial.image}
-                    alt={`${testimonial.business} website`}
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-dark-950/80 backdrop-blur-[2px]" />
-                </div>
+              {/* Review card — overlapping on top */}
+              <div className="relative -mt-32 mx-4 sm:mx-6 z-10">
+                {/* Glow on hover */}
+                <div className="absolute -inset-1 bg-gradient-to-b from-accent-pink/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
 
-                <div className="relative border border-white/[0.06] rounded-2xl p-7 hover:border-white/10 transition-all duration-300 h-full flex flex-col">
+                <div className="relative glass-card rounded-2xl p-7 hover:border-white/10 transition-all duration-300 flex flex-col">
                   {/* Quote icon */}
                   <Quote className="w-8 h-8 text-accent-pink/20 mb-4" />
 
