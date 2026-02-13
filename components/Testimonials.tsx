@@ -8,23 +8,26 @@ interface Testimonial {
   city: string;
   quote: string;
   rating: number;
+  image: string;
 }
 
 export const Testimonials: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
-      name: "Simon",
-      business: "Mowing West",
-      city: "Auckland",
-      quote: "We used to get about 10 leads per month. We're up to an average of 45 now. The lead form the guys made for us is super helpful on a data level too. Plus the website sets us apart from other contractors around us. Thanks for looking after us!",
-      rating: 5
-    },
-    {
       name: "Mathew",
       business: "Ground Pro Ltd",
       city: "Auckland",
       quote: "They're quick! Thanks for the tidy website, team. Ticks all the boxes and such an easy business to work with.",
-      rating: 5
+      rating: 5,
+      image: "/images/groundpro.jpg"
+    },
+    {
+      name: "Simon",
+      business: "Mowing West",
+      city: "Auckland",
+      quote: "We used to get about 10 leads per month. We're up to an average of 45 now. The lead form the guys made for us is super helpful on a data level too. Plus the website sets us apart from other contractors around us. Thanks for looking after us!",
+      rating: 5,
+      image: "/images/mowingwest.jpg"
     }
   ];
 
@@ -61,27 +64,39 @@ export const Testimonials: React.FC = () => {
               {/* Glow on hover */}
               <div className="absolute -inset-1 bg-gradient-to-b from-accent-pink/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
 
-              <div className="relative glass-card rounded-2xl p-7 hover:border-white/10 transition-all duration-300 h-full flex flex-col">
-                {/* Quote icon */}
-                <Quote className="w-8 h-8 text-accent-pink/20 mb-4" />
-
-                <div className="flex gap-0.5 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-accent-orange text-accent-orange" />
-                  ))}
+              <div className="relative rounded-2xl overflow-hidden h-full">
+                {/* Website screenshot background */}
+                <div className="absolute inset-0">
+                  <img
+                    src={testimonial.image}
+                    alt={`${testimonial.business} website`}
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-dark-950/80 backdrop-blur-[2px]" />
                 </div>
 
-                <blockquote className="text-zinc-300 leading-relaxed mb-6 flex-1 text-sm">
-                  "{testimonial.quote}"
-                </blockquote>
+                <div className="relative border border-white/[0.06] rounded-2xl p-7 hover:border-white/10 transition-all duration-300 h-full flex flex-col">
+                  {/* Quote icon */}
+                  <Quote className="w-8 h-8 text-accent-pink/20 mb-4" />
 
-                <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-pink to-accent-orange flex items-center justify-center text-white font-bold font-heading text-sm flex-shrink-0">
-                    {testimonial.name.charAt(0)}
+                  <div className="flex gap-0.5 mb-4">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-accent-orange text-accent-orange" />
+                    ))}
                   </div>
-                  <div>
-                    <p className="font-semibold text-white text-sm">{testimonial.name}</p>
-                    <p className="text-zinc-500 text-xs">{testimonial.business} &middot; {testimonial.city}</p>
+
+                  <blockquote className="text-zinc-300 leading-relaxed mb-6 flex-1 text-sm">
+                    "{testimonial.quote}"
+                  </blockquote>
+
+                  <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-pink to-accent-orange flex items-center justify-center text-white font-bold font-heading text-sm flex-shrink-0">
+                      {testimonial.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white text-sm">{testimonial.name}</p>
+                      <p className="text-zinc-500 text-xs">{testimonial.business} &middot; {testimonial.city}</p>
+                    </div>
                   </div>
                 </div>
               </div>
