@@ -51,7 +51,7 @@ export const Testimonials: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+        <div className="grid gap-8 md:grid-cols-2 md:items-end max-w-5xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -61,8 +61,8 @@ export const Testimonials: React.FC = () => {
               transition={{ delay: index * 0.1 }}
               className="relative group"
             >
-              {/* Website screenshot — separate card behind */}
-              <div className="relative rounded-xl overflow-hidden border border-white/[0.06] shadow-2xl">
+              {/* Website screenshot — separate card behind, extends outward on desktop */}
+              <div className={`relative rounded-xl overflow-hidden border border-white/[0.06] shadow-2xl md:w-[120%] ${index === 0 ? 'md:ml-auto md:mr-0' : 'md:mr-auto md:ml-0'}`}>
                 <img
                   src={testimonial.image}
                   alt={`${testimonial.business} website`}
@@ -77,7 +77,7 @@ export const Testimonials: React.FC = () => {
                 {/* Glow on hover */}
                 <div className="absolute -inset-1 bg-gradient-to-b from-accent-pink/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
 
-                <div className="relative glass-card rounded-2xl p-7 hover:border-white/10 transition-all duration-300 flex flex-col">
+                <div className="relative glass-card rounded-2xl p-7 hover:border-white/10 transition-all duration-300 flex flex-col md:min-h-[320px]">
                   {/* Quote icon */}
                   <Quote className="w-8 h-8 text-accent-pink/20 mb-4" />
 
